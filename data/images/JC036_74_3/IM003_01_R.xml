@@ -1,0 +1,31 @@
+<geotek-image>
+  <image-type>giRulerImage</image-type>
+  <coreID>JC036_74_3</coreID>
+  <section-number>3</section-number>
+  <image-number>1</image-number>
+  <physical-width>10.75</physical-width>
+  <physical-height>73.50</physical-height>
+  <physical-top>0.00</physical-top>
+  <pixels-per-scan>5</pixels-per-scan>
+  <pixels-per-CM>200</pixels-per-CM>
+  <horizontal-resolution>200</horizontal-resolution>
+  <exposure-time-ms>10</exposure-time-ms>
+  <calibration-aperture>7.75</calibration-aperture>
+  <image-aperture>9.60</image-aperture>
+  <red-high-calibration>18.0</red-high-calibration>
+  <green-high-calibration>18.0</green-high-calibration>
+  <blue-high-calibration>18.0</blue-high-calibration>
+  <red-low-calibration>0.0</red-low-calibration>
+  <green-low-calibration>0.0</green-low-calibration>
+  <blue-low-calibration>0.0</blue-low-calibration>
+  <pixel-width>2150</pixel-width>
+  <scan-lines>14700</scan-lines>
+  <filename>IM003_01_R.tif</filename>
+  <geotek-camera-lighting version="2" mode="visible" bank2cluster1="0" bank2cluster2="0" bank2cluster3="0" bank2cluster4="0" bank1cluster1="0" bank1cluster2="0" bank1cluster3="0" bank1cluster4="0"/>
+  <convg-x-red>0</convg-x-red>
+  <convg-x-green>0</convg-x-green>
+  <convg-x-blue>0</convg-x-blue>
+  <convg-y-red>0</convg-y-red>
+  <convg-y-green>4</convg-y-green>
+  <convg-y-blue>8</convg-y-blue>
+</geotek-image>
