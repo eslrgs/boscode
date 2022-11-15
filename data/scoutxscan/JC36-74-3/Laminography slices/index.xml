@@ -1,0 +1,224 @@
+<geotek-ct-stack>
+  <geoct-Identification-Section>
+    <Core-ID>JC36-74-3</Core-ID>
+    <Scan-ID>Radiography</Scan-ID>
+    <Image-Type>Laminography</Image-Type>
+    <Processing-Stage>Recon</Processing-Stage>
+    <Section-Number>1</Section-Number>
+    <Section-Depth units="cm">0.00</Section-Depth>
+    <Depth-in-Section units="cm">0.0000</Depth-in-Section>
+    <Total-Scanned-Length units="cm">88.30</Total-Scanned-Length>
+    <Start-Time>31.01.2022 16.17.52</Start-Time>
+    <End-Time>31.01.2022 16.19.23</End-Time>
+    <User-Comments></User-Comments>
+    <Firmware-Version>M067</Firmware-Version>
+    <Windows-Version>Win64</Windows-Version>
+    <Logger-Type-Desc>XCT</Logger-Type-Desc>
+    <Generated-From-Application>MSCLXCT</Generated-From-Application>
+    <SVN-Version>SVN11690</SVN-Version>
+    <Build-Date>2021-03-29</Build-Date>
+    <Project></Project>
+    <Client></Client>
+    <Location></Location>
+    <Image-Data-Type>UInt16</Image-Data-Type>
+    <Reconstruction-Summary>
+      <Generated-From-Application>Reconstructor;SVN12821;2021-11-08</Generated-From-Application>
+      <Angle-Offset-Deg units="degrees">0.000</Angle-Offset-Deg>
+      <Image-Pixel-Size-X units="microns">145.355</Image-Pixel-Size-X>
+      <Image-Pixel-Size-Y units="microns">145.355</Image-Pixel-Size-Y>
+      <Image-Pixel-Size-Z units="microns">145.355</Image-Pixel-Size-Z>
+      <Image-Dimension-X units="pixels">940</Image-Dimension-X>
+      <Image-Dimension-Y units="pixels">940</Image-Dimension-Y>
+      <Image-Dimension-Z units="pixels">6075</Image-Dimension-Z>
+      <Image-Scalar units="">1.641E-005</Image-Scalar>
+      <Image-Offset units="">0.000E+000</Image-Offset>
+    </Reconstruction-Summary>
+  </geoct-Identification-Section>
+  <geoct-Recipe-Header-Section>
+    <Recipe Latest="True">
+      <Name>JC36_split2</Name>
+      <DateTime>08.02.2022 16.47.25</DateTime>
+    </Recipe>
+  </geoct-Recipe-Header-Section>
+  <geoct-Acquisition-Section>
+    <Projection-File_Structure>Lamino2</Projection-File_Structure>
+    <XRay-Source>
+      <Model-Name>Thermo Kevex PSX10-65W</Model-Name>
+      <XRay-Voltage units="kV">115.0</XRay-Voltage>
+      <XRay-Current units="uA">375.0</XRay-Current>
+      <Spot-Size-Microns>63.000000</Spot-Size-Microns>
+    </XRay-Source>
+    <Filter>
+      <Material>Cu 1.0 mm</Material>
+      <Thickness units="mm">1.000</Thickness>
+    </Filter>
+    <Geometry>
+      <Source-Object-Distance units="mm">232.014</Source-Object-Distance>
+      <Source-Detector-Distance units="mm">405.432</Source-Detector-Distance>
+      <Detector-in-Plane units="degrees">-90.000</Detector-in-Plane>
+      <Detector-Tilt units="degrees">-0.010</Detector-Tilt>
+      <Detector-Skew units="degrees">0.000</Detector-Skew>
+      <Offset-Angle units="degrees">0.000</Offset-Angle>
+      <Beam-Centre>
+        <Horizontal-Offset units="pixels">-2.00</Horizontal-Offset>
+        <Vertical-Offset units="pixels">2.50</Vertical-Offset>
+      </Beam-Centre>
+      <User-Defined-Pixel-Size>
+        <Enabled>No</Enabled>
+        <Position-One units="pixels">0</Position-One>
+        <Position-Two units="pixels">0</Position-Two>
+        <Distance units="mm">0.0</Distance>
+        <Is-Crosscore>No</Is-Crosscore>
+      </User-Defined-Pixel-Size>
+    </Geometry>
+    <Motor-Movements>
+      <Rotation>
+        <Start-Angle units="degrees">0</Start-Angle>
+        <Step units="degrees">0</Step>
+        <End-Angle units="degrees">0</End-Angle>
+        <Clockwise-Direction>0</Clockwise-Direction>
+        <Start-Stop-Acquisition>0</Start-Stop-Acquisition>
+      </Rotation>
+      <Translation>
+        <Start-Position units="mm">0</Start-Position>
+        <Step units="mm">0.726776</Step>
+        <End-Position units="mm">883</End-Position>
+      </Translation>
+    </Motor-Movements>
+    <Detector>
+      <Model-Name>Varian-2520DX</Model-Name>
+      <Mode>2x2</Mode>
+      <Serial-No>545S03-0605</Serial-No>
+      <Frame-Rate>15.000</Frame-Rate>
+      <Pixel-Size units="mm">0.254</Pixel-Size>
+      <Averaging>1</Averaging>
+      <Pixel-Scan-Height>748</Pixel-Scan-Height>
+      <Pixel-Scan-Width>940</Pixel-Scan-Width>
+      <Image-Slope>1.6413E-005</Image-Slope>
+      <Image-Offset>0.0000E+000</Image-Offset>
+    </Detector>
+  </geoct-Acquisition-Section>
+  <geoct-Processing-Section>
+    <Fluctuation-Correction>
+      <Mode>Manual</Mode>
+      <Frames-To-Average>0</Frames-To-Average>
+      <Region-Of-Interest>
+        <Index>1</Index>
+        <Top-Pixel-Position units="pixels">0</Top-Pixel-Position>
+        <Bottom-Pixel-Position units="pixels">43</Bottom-Pixel-Position>
+        <Left-Pixel-Position units="pixels">1</Left-Pixel-Position>
+        <Right-Pixel-Position units="pixels">88</Right-Pixel-Position>
+        <Target-Intensity>40797.55</Target-Intensity>
+      </Region-Of-Interest>
+    </Fluctuation-Correction>
+  </geoct-Processing-Section>
+  <geoct-Post-Process-Section>
+    <Output-Scaling>
+      <Auto-Mode>Yes</Auto-Mode>
+      <Min-Value>-0.14509</Min-Value>
+      <Max-Value>0.1362845225</Max-Value>
+    </Output-Scaling>
+  </geoct-Post-Process-Section>
+  <geoct-Recipe-Section>
+    <Recipe Latest="True">
+      <Name>JC36_split2</Name>
+      <DateTime>08.02.2022 16.47.25</DateTime>
+      <Recipe-XML>
+        <Geotek Description="Geotek Reconstructor Recipe" FileName="C:\Geotek\Settings\Reconstructor\Recipes\JC36_split2.xml" LastSavedUTC="31/01/2022 13:33:45" VersionNumber="1">
+          <EditPassword type="String"></EditPassword>
+          <Recipe>
+            <ImageCrop type="Rect">Left=-1,Top=-1,Width=0,Height=0</ImageCrop>
+            <LaminographyDepths type="LengthMMArray" units="mm">-60mm|-45mm|-30mm|-15mm|0mm|15mm|30mm|45mm|60mm</LaminographyDepths>
+            <Name type="String">CD166-19</Name>
+            <OutputPixelSize type="LengthMM" units="mm">0mm</OutputPixelSize>
+            <ReconstructionFilter type="String">Hann</ReconstructionFilter>
+            <Type type="String">CT Laminography Reconstruction</Type>
+            <CircumferentialLaminography>
+              <Radii type="LengthMMArray" units="mm">45mm|65mm</Radii>
+              <StartAngle type="AngleDeg" units="degrees">0degrees</StartAngle>
+            </CircumferentialLaminography>
+            <CoreCentreOffsets>
+              <XPosition type="LengthMM" units="mm">0mm</XPosition>
+              <YPosition type="LengthMM" units="mm">0mm</YPosition>
+            </CoreCentreOffsets>
+            <Mask>
+              <Enabled type="Boolean">True</Enabled>
+              <Threshold type="Double">0.85</Threshold>
+            </Mask>
+            <NoiseReduction>
+              <Algorithm type="String">RWGFilter</Algorithm>
+              <Weight type="Double">0.01</Weight>
+              <Window type="DoubleArray">11|5|0.5</Window>
+            </NoiseReduction>
+            <OutputScaling>
+              <Maximum type="Double">0</Maximum>
+              <Minimum type="Double">0</Minimum>
+            </OutputScaling>
+            <ReconstructedOutput>
+              <OutputAlongsideRawProjections type="Boolean">True</OutputAlongsideRawProjections>
+              <OutputFolderPostFix type="String"></OutputFolderPostFix>
+              <OutputFolderPrefix type="String"></OutputFolderPrefix>
+              <OutputToMyDocuments type="Boolean">False</OutputToMyDocuments>
+              <OutputToPreferredFolder type="Boolean">False</OutputToPreferredFolder>
+              <PreferredOutputFolder type="String">C:\GeotekData\GHOIRTEIN21\GHOIRTEIN21-Core2-300-400cm\Laminography</PreferredOutputFolder>
+            </ReconstructedOutput>
+            <Refinement>
+              <Enabled type="Boolean">False</Enabled>
+              <ExpFactor type="Double">1</ExpFactor>
+              <Iterations type="Cardinal">4</Iterations>
+              <Threshold type="Double">0.2</Threshold>
+            </Refinement>
+          </Recipe>
+        </Geotek>
+</Recipe-XML>
+    </Recipe>
+  </geoct-Recipe-Section>
+  <geoct-Reconstruction-Section>
+    <Recipe-Name>CD166-19</Recipe-Name>
+    <Image-Range></Image-Range>
+    <Image-Crop>
+      <Top>-1</Top>
+      <Bottom>-1</Bottom>
+      <Left>-1</Left>
+      <Right>-1</Right>
+    </Image-Crop>
+    <Output-Path>C:\GeotekData\JC36\JC36-74-3\01_Radiography_raw_A00000\JC36_split2\</Output-Path>
+    <Output-Pixel-Size units="mm"></Output-Pixel-Size>
+    <Output-Scaling>
+      <Minimum></Minimum>
+      <Maximum></Maximum>
+    </Output-Scaling>
+    <Noise-Reduction>
+      <Enabled>1</Enabled>
+      <Algorithm>RWGFilter</Algorithm>
+      <Window>11 5 0.5</Window>
+      <Weight>0.01</Weight>
+    </Noise-Reduction>
+    <Reconstruction-Filter>Hann</Reconstruction-Filter>
+    <Core-Centre-Offsets>
+      <X-Position units="mm">0</X-Position>
+      <Z-Position units="mm">0</Z-Position>
+    </Core-Centre-Offsets>
+    <Circumferential-Laminography>
+      <Enabled>1</Enabled>
+      <Start-Angle units="degrees">0</Start-Angle>
+      <Radii units="mm">45 65</Radii>
+    </Circumferential-Laminography>
+    <Laminography>
+      <Enabled>1</Enabled>
+      <Depths units="mm">-60 -45 -30 -15 0 15 30 45 60</Depths>
+    </Laminography>
+    <Refinement>
+      <Enabled>0</Enabled>
+      <Iterations>4</Iterations>
+      <Exp-Factor>1</Exp-Factor>
+      <Threshold>0.2</Threshold>
+    </Refinement>
+    <Mask>
+      <Enabled>1</Enabled>
+      <Threshold>0.85</Threshold>
+    </Mask>
+  </geoct-Reconstruction-Section>
+  <Version-Number>5</Version-Number>
+  <Core-GUID>{429803C0-0BC2-401F-B76C-0C314B268F19}</Core-GUID>
+</geotek-ct-stack>
