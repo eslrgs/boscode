@@ -9,7 +9,6 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from matplotlib import cm
 from skimage.transform import resize
-import mpld3
 import matplotlib.ticker as tkr 
 import warnings
 
