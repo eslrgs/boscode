@@ -5,4 +5,5 @@ scipy==1.5.2
 seaborn==0.11.0
 pyproj==1.9.6
 scikit-learn==1.0.1
-scipy==1.7.3
+scikit-image==0.16.2
+glob2==0.7
