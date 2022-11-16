@@ -9,7 +9,6 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from matplotlib import cm
 from skimage.transform import resize
-import mpld3
 import matplotlib.ticker as tkr 
 import warnings
 
@@ -19,7 +18,7 @@ pd.options.mode.chained_assignment = None
 
 def load_image(core_label, core_section = -1):
     
-    global core, core_images, images_shp
+    global core, core_df, images_shp
     
     if core_section > 0:
         
@@ -50,18 +49,18 @@ def load_image(core_label, core_section = -1):
         df.reset_index(inplace = True)
         appended_data.append(df)
         img = plt.imread(k)
-        img = img[:-1300]
+        img = img[:-325]
         images_shp.append(img.shape[:2])
         images.append(img)
 
-    core_images = np.vstack(images)
-    core = pd.concat(appended_data)
-    core.reset_index(inplace = True)
-    core['depth_m'] = core.index/1000
+    core = np.vstack(images)
+    core_df = pd.concat(appended_data)
+    core_df.reset_index(inplace = True)
+    core_df['depth_m'] = core_df.index/1000
     
     print('image: done')
     
-    return core, core_images, images_shp
+    return core_df, core, images_shp
 
 def load_xrf(core_label = None, core_section = -1, path = None):
     
@@ -133,7 +132,7 @@ def load_xrf(core_label = None, core_section = -1, path = None):
 
 def load_xray(core_label, core_section = -1):
     
-    global xrays, lams
+    global xray, lam
     
     if core_section > 0:
         
@@ -169,13 +168,23 @@ def load_xray(core_label, core_section = -1):
         lam_images.append(img)
 
         counter += 1
+        
+#     for i in lam_files:
 
-    xrays = np.vstack(xray_images)
-    lams = np.vstack(lam_images)
+#         img = plt.imread(i)
+#         img = resize(img, images_shp[counter], anti_aliasing = True)
+#         img = (img - np.min(img)) / (np.max(img) - np.min(img))
+#         lam_images.append(img)
+
+        counter += 1
+    
+    
+    xray = np.vstack(xray_images)
+    lam = np.vstack(lam_images)
     
     print('xray: done')
         
-    return xrays, lams
+    return xray, lam
 
 def load_magsus(core_label, core_section = -1):
     
@@ -216,19 +225,19 @@ def plot_all(core_label, core_section = -1):
 
     color_index = np.arange(left_lim, right_lim, span / 100)
     
-    ax[0].imshow(core_images)
+    ax[0].imshow(core)
     ax[0].set(title = 'image')
     ax[0].set_aspect('auto')
-    ax[0].set(ylim = (core_images.shape[0], 0), yticklabels = np.arange(0, core_images.shape[0]/20000, 1),
+    ax[0].set(ylim = (core.shape[0], 0), yticklabels = np.arange(0, core.shape[0]/5000, 1),
              ylabel = 'depth [m]')
     ax[0].tick_params(axis='y', which='minor', bottom=False)
-    ax[0].vlines(core_images.shape[1]/2, core_images.shape[0], 0, color = 'k', linestyle = '--') 
+    ax[0].vlines(core.shape[1]/2, core.shape[0], 0, color = 'k', linestyle = '--') 
     ax[0].axes.get_xaxis().set_visible(False)
 
-    ax[1].plot(core.r, core.depth_m, c = 'k', lw = 1)
-    ax[1].set(ylim = (core.depth_m.max(), core.depth_m.min()), xlim = (12, 2), ylabel = 'depth [m]',
+    ax[1].plot(core_df.r, core_df.depth_m, c = 'k', lw = 1)
+    ax[1].set(ylim = (core_df.depth_m.max(), core_df.depth_m.min()), xlim = (12, 2), ylabel = 'depth [m]',
              xlabel = 'r-intensity', title = 'r-intensity')
-    ax[1].fill_betweenx(core.depth_m, core.r, 0, color = 'w')
+    ax[1].fill_betweenx(core_df.depth_m, core_df.r, 0, color = 'w')
     ax[1].axes.get_xaxis().set_visible(False)
     ax[1].axes.get_yaxis().set_visible(False)
 
@@ -236,9 +245,9 @@ def plot_all(core_label, core_section = -1):
 
         index_value = (index - left_lim)/span
         color = cmap(index_value)
-        ax[1].fill_betweenx(core. depth_m, 12, core.r, where = core.r >= index,  color = color)
+        ax[1].fill_betweenx(core_df. depth_m, 12, core_df.r, where = core_df.r >= index,  color = color)
 
-    cax = ax[2].imshow(xrays, cmap = 'Greys_r', vmin = 0., vmax = 0.25)
+    cax = ax[2].imshow(xray, cmap = 'Greys_r', vmin = 0.5, vmax = 0.8)
     ax[2].set_aspect('auto')
     ax[2].axes.get_xaxis().set_visible(False)
     ax[2].axes.get_yaxis().set_visible(False)
@@ -260,19 +269,19 @@ def plot_all(core_label, core_section = -1):
         xrf_depth = xrf.position_corr/1000
 
     ax[3].plot(xrf['Si']/xrf['Ca'], xrf_depth, c = 'k', lw = 0.7)
-    ax[3].set(ylim = (core.depth_m.max(), core.depth_m.min()), title = 'Si/Ca')
+    ax[3].set(ylim = (core_df.depth_m.max(), core_df.depth_m.min()), title = 'Si/Ca')
     ax[3].axes.get_yaxis().set_visible(False)
 
     ax[4].plot(xrf['Ca']/xrf['Ti'], xrf_depth, c = 'k', lw = 0.8)
-    ax[4].set(ylim = (core.depth_m.max(), core.depth_m.min()), title = 'Ca/Ti')
+    ax[4].set(ylim = (core_df.depth_m.max(), core_df.depth_m.min()), title = 'Ca/Ti')
     ax[4].axes.get_yaxis().set_visible(False)
 
     ax[5].plot(xrf['Sr']/xrf['Ca'], xrf_depth, c = 'k', lw = 0.8)
-    ax[5].set(ylim = (core.depth_m.max(), core.depth_m.min()), xlim = (0.05, 0.15), title = 'Sr/Ca')
+    ax[5].set(ylim = (core_df.depth_m.max(), core_df.depth_m.min()), xlim = (0.05, 0.15), title = 'Sr/Ca')
     ax[5].axes.get_yaxis().set_visible(False)
 
     ax[6].plot(xrf['Br']/xrf['Cl'], xrf_depth, c = 'k', lw = 0.8)
-    ax[6].set(ylim = (core.depth_m.max(), core.depth_m.min()), xlim = (0, 0.7), title = 'Br/Cl')
+    ax[6].set(ylim = (core_df.depth_m.max(), core_df.depth_m.min()), xlim = (0, 0.7), title = 'Br/Cl')
     ax[6].axes.get_yaxis().set_visible(False)
 
     xrf['next'] = xrf['position (mm)'].shift(-1)
@@ -301,12 +310,12 @@ def plot_all(core_label, core_section = -1):
     thickness_df = pd.DataFrame({'thickness':thickness, 'colors':clrs}, index = index)
 
     ax[7].axes.get_xaxis().set_visible(False)
-    ax[7].set(ylim = (core.depth_m.max(), core.depth_m.min()), title = 'clusters')
+    ax[7].set(ylim = (core_df.depth_m.max(), core_df.depth_m.min()), title = 'clusters')
     ax[7].axes.get_xaxis().set_visible(False)
     ax[7].axes.get_yaxis().set_visible(False)
     
     ax[8].plot(magsus['Magnetic Susceptibility'], magsus['Depth'], c = 'k', lw = 0.7)
-    ax[8].set(ylim = (core.depth_m.max()*100, core.depth_m.min()*100), title = 'mag. sus.')
+    ax[8].set(ylim = (core_df.depth_m.max()*100, core_df.depth_m.min()*100), title = 'mag. sus.')
     ax[8].axes.get_yaxis().set_visible(False)
 
     for ax in ax:
@@ -341,17 +350,17 @@ def plot_zoom(core_label, base, top, c1, c2):
     
 #     xrf['position_corr'] = xrf['position_corr'] - 12
     
-    ax1.imshow(core_images)
+    ax1.imshow(core)
     ax1.set(title = 'image')
     ax1.set_aspect('auto')
-    ax1.set(ylim = (top * 20000, base * 20000), ylabel = 'depth [m]')
+    ax1.set(ylim = (top * 5000, base * 5000), ylabel = 'depth [m]')
     ax1.axes.get_xaxis().set_visible(False)
     ax1.tick_params(axis='y', which='minor', bottom=False)
-    ax1.vlines(core_images.shape[1]/2, top * 20000, base * 20000, color = 'k', linestyle = '--') 
+    ax1.vlines(core.shape[1]/2, top * 5000, base * 5000, color = 'k', linestyle = '--') 
 
     def numfmt(x, pos): 
         
-        s = '{}'.format(x / 20000)
+        s = '{}'.format(x / 5000)
         
         return s
 
@@ -359,21 +368,21 @@ def plot_zoom(core_label, base, top, c1, c2):
 
     ax1.yaxis.set_major_formatter(yfmt)
     
-#     ax2.imshow(xrays, cmap = 'Greys_r', vmin = 0., vmax = 0.25)
-#     ax2.set(ylim = (ylim2 * 20000, ylim1 * 20000))
-#     ax2.set_aspect('auto')
-#     ax2.axes.get_xaxis().set_visible(False)
-#     ax2.axes.get_yaxis().set_visible(False)
-#     ax2.set(title = 'x-ray')
-    
-    ax2.imshow(lams, cmap = 'Greys_r', vmin = c1, vmax = c2)
-    ax2.set(ylim = (top * 20000, base * 20000))
+    ax2.imshow(xray, cmap = 'Greys_r', vmin = 0., vmax = 0.25)
+    ax2.set(ylim = (ylim2 * 20000, ylim1 * 20000))
     ax2.set_aspect('auto')
     ax2.axes.get_xaxis().set_visible(False)
     ax2.axes.get_yaxis().set_visible(False)
-    ax2.set(title = 'x-ray [lam]')
-    ax2.axvspan(0, 500, color = 'w')
-    ax2.axvspan(lams.shape[1] - 500, lams.shape[1], color = 'w')
+    ax2.set(title = 'x-ray')
+    
+    # ax2.imshow(xray, cmap = 'Greys_r', vmin = c1, vmax = c2)
+    # ax2.set(ylim = (top * 5000, base * 5000))
+    # ax2.set_aspect('auto')
+    # ax2.axes.get_xaxis().set_visible(False)
+    # ax2.axes.get_yaxis().set_visible(False)
+    # ax2.set(title = 'x-ray [lam]')
+    # ax2.axvspan(0, 500, color = 'w')
+    # ax2.axvspan(lams.shape[1] - 500, lams.shape[1], color = 'w')
 
     ax3.plot(xrf['Si']/xrf['Ca'], xrf.position_corr/1000, c = 'k', lw = 0.8)
     ax3.set(ylim = (top, base), title = 'Si/Ca')
