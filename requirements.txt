@@ -6,3 +6,4 @@ seaborn==0.11.0
 scikit-learn==1.0.1
 scikit-image==0.16.2
 glob2==0.7
+xlrd==1.2.0
